@@ -4,6 +4,7 @@
 {% block extra_css %}
 <style>
 .avatar-thumb { width: 40px; height: 40px; object-fit: cover; border-radius: 50%; }
+.search-form-btns .btn { padding: 0.2rem 0.5rem; font-size: 0.75rem; }
 </style>
 {% endblock %}
 
@@ -52,11 +53,11 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="col-md-2 d-flex gap-2">
-                            <button type="submit" class="btn btn-primary btn-sm px-3">
+                        <div class="col-md-2 d-flex gap-2 search-form-btns">
+                            <button type="submit" class="btn btn-primary btn-sm">
                                 <i class="bi bi-search"></i> Search
                             </button>
-                            <a href="{% url 'students:student_list' %}" class="btn btn-secondary btn-sm px-3" title="Clear filters">Clear</a>
+                            <a href="{% url 'students:student_list' %}" class="btn btn-secondary btn-sm" title="Clear filters">Clear</a>
                         </div>
                     </form>
 
