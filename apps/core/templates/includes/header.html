@@ -1,0 +1,27 @@
+{% load static %} 
+
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+  <div class="d-flex align-items-center justify-content-between w-100">
+    <i class="bi bi-list toggle-sidebar-btn"></i>
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center gap-3 list-unstyled mb-0">
+        <li class="text-muted">{% if user.is_authenticated %}{{ user.get_username }}{% else %}Guest{% endif %}</li>
+        <li><a class="nav-link py-0" href="{% url 'core:profile' %}">My Account</a></li>
+        {% if user.is_authenticated %}
+        <li>
+          <form method="post" action="{% url 'logout' %}" class="d-inline mb-0">
+            {% csrf_token %}
+            <button type="submit" class="nav-link py-0 border-0 bg-transparent text-danger">Logout</button>
+          </form>
+        </li>
+        {% else %}
+        <li><a class="nav-link py-0" href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+
+</header><!-- End Header -->

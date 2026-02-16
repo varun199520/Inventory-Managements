@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Student Management System by Varun</title>
+  <!-- Fallback styles only when static CSS fails (do not set margin-left so theme sidebar layout works) -->
+  <style>
+    body { background: #e0edff; color: #444; font-family: system-ui, sans-serif; margin: 0; }
+    #main.main { min-height: 100vh; }
+    .pagetitle { margin-bottom: 1rem; }
+    .pagetitle h1 { font-size: 1.5rem; margin: 0; }
+    .breadcrumb { padding: 0; margin: 0.5rem 0 0; list-style: none; }
+    .breadcrumb-item { display: inline; }
+    .breadcrumb-item + .breadcrumb-item::before { content: "/ "; }
+    .card { background: #fff; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 1rem; }
+    .card-body { padding: 1.25rem; }
+    .card-title { margin: 0 0 0.5rem; font-size: 1.1rem; }
+    .card-text { margin: 0; color: #555; }
+    a { color: #0d6efd !important; }
+  a:hover { color: #0a58ca !important; }
+  .btn-primary, .btn-outline-primary { --bs-btn-bg: #0d6efd; --bs-btn-border-color: #0d6efd; --bs-btn-color: #fff; }
+  .btn-outline-primary { --bs-btn-color: #0d6efd; }
+  .text-primary { color: #0d6efd !important; }
+  .bg-primary { background-color: #0d6efd !important; }
+  </style>
+  <meta name="description" content="Student Management System by Varun – Manage student records, profiles, and enrollment for schools.">
+  <meta name="keywords" content="student management, school, Varun, enrollment, student directory">
+
+  <!-- Favicon -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <!--vendor css files-->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/fontawesome/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  
+  <!--pages-specific css files-->
+  {% block extra_css %}
+  {% endblock %}
+</head>
+
+<body>
+{% include 'includes/header.html' %}
+{% include 'includes/sidebar.html' %}
+<main id="main" class="main">
+  {% if messages %}
+  <div class="container-fluid py-2">
+    {% for message in messages %}
+    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% block content %}
+  {% endblock %}
+</main>
+{% include 'includes/footer.html' %}
+<!-- load jquery first-->
+ <script src="{%static 'vendor/jquery/jquery.min.js' %}"></script>
+
+<!--vendor js files-->
+<script src="{%static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{%static 'vendor/tinymce/tinymce.min.js' %}"></script>
+<script src="{%static 'vendor/quill/quill.min.js' %}"></script>
+
+
+
+ <!--load bootstrap bundle js-->
+ <script src="{%static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+ <!--template main js-->
+ <script src="{%static 'js/main.js' %}"></script>
+<!--template navigation script-->
+ <script src="{%static 'js/sidebar.js' %}"></script>
+
+<!--page-specific extra scripts-->
+{% block extra_scripts %}
+{% endblock %}
+</body>
+
+</html>
