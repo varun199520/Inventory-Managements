@@ -1,0 +1,61 @@
+{% load static %}
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link " href="{% url 'core:index' %}">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#students-nav" data-bs-toggle="collapse" href="javascript:void(0)">
+        <i class="bi bi-people"></i><span>Students</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="students-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="{% url 'students:student_create' %}" class="nav-link">
+            <i class="bi bi-circle"></i><span>Add Student</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'students:student_list' %}" class="nav-link">
+            <i class="bi bi-circle"></i><span>Students Directory</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Students Nav -->
+
+    <li class="nav-heading">Pages</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'core:profile' %}">
+        <i class="bi bi-person"></i>
+        <span>My Account</span>
+      </a>
+    </li><!-- End My Account (user) Nav -->
+
+    <li class="nav-item">
+      {% if user.is_authenticated %}
+      <form method="post" action="{% url 'logout' %}" class="d-inline w-100">
+        {% csrf_token %}
+        <button type="submit" class="nav-link collapsed border-0 bg-transparent text-start w-100 d-flex align-items-center px-0">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Logout</span>
+        </button>
+      </form>
+      {% else %}
+      <a class="nav-link collapsed" href="{% url 'login' %}">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>Login</span>
+      </a>
+      {% endif %}
+    </li><!-- End Logout / Login -->
+
+  </ul>
+
+</aside><!-- End Sidebar-->

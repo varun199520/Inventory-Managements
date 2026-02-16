@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="pagetitle">
+    <h1>Log in</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active">Log in</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section dashboard">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Log in – Student Management System by Varun</h5>
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                    {% endif %}
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_username" class="form-label">Username</label>
+                            <input type="text" name="username" id="id_username" class="form-control" required autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_password" class="form-label">Password</label>
+                            <input type="password" name="password" id="id_password" class="form-control" required>
+                        </div>
+                        <input type="hidden" name="next" value="{{ next }}">
+                        <button type="submit" class="btn btn-primary">Log in</button>
+                        <a href="{% url 'core:index' %}" class="btn btn-secondary">Cancel</a>
+                    </form>
+                    <p class="mt-3 small text-muted">Use your Django admin username and password, or create a user in the admin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

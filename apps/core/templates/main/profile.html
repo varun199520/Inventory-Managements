@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="pagetitle">
+    <h1>My Account</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active">My Account</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Account</h5>
+                    {% if user.is_authenticated %}
+                    <p><strong>Username:</strong> {{ user.get_username }}</p>
+                    {% if user.email %}<p><strong>Email:</strong> {{ user.email }}</p>{% endif %}
+                    <p class="text-muted small">You are logged in. Account settings can be added here.</p>
+                    {% else %}
+                    <p>You are not logged in. This is your account placeholder page.</p>
+                    <p class="mb-3"> <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-primary">Log in</a> to see your account details.</p>
+                    <p class="text-muted small">To view a <strong>student</strong> profile, go to <a href="{% url 'students:student_list' %}">Students Directory</a> and click <strong>View</strong> on a student.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

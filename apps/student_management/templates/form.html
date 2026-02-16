@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div class="pagetitle">
+    <h1>Student form</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:index' %}">dashboard </a></li>
+            <li class="breadcrumb-item active">student list</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ title }}</h5>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">{{ title }}</button>
+                        <a href="{% url 'students:student_list' %}" class="btn btn-secondary">Cancel</a>
+                    </form>
+                   
+
+                </div>
+            </div>
+        </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Instrution</h5>
+                      <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="bi bi-info-circlue text-primary"></i> fill all required fields marked with *
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-info-calendar text-primary"></i> Birth date must be in the past
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-image text-primary"></i> photo is optional
+                        </li>
+                        <li class="mb-2">
+                            <i class="bi bi-shield-check text-primary"></i> all information is kept confidential
+                        </li>
+                      </ul>                       
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

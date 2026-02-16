@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Welcome</h5>
+                    <p class="card-text">This <strong>student management system</strong> by Varun helps schools manage student records: add new students, view and edit profiles, track academic levels and enrollment status, and keep a directory of all registered students.</p>
+                    <p class="card-text text-muted small mb-0">Log in to add, edit, or delete students. Guests can browse the student directory and view profiles.</p>
+                </div>
+            </div>
+        </div>
+        {% if student_count is not None %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Students</h5>
+                    <p class="display-6 mb-0">{{ student_count }}</p>
+                    <p class="text-muted small mb-0">registered in the system</p>
+                    <a href="{% url 'students:student_list' %}" class="btn btn-sm btn-outline-primary mt-2">View directory</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}
